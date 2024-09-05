@@ -19,6 +19,25 @@
     "residential_summary": "N/A"
   },
   {
+    "provider": "Vernon",
+    "url": "https://www.cityofvernon.org/government/public-utilities/customer-service/rebates-and-incentives/electric-vehicles",
+    "program_name": "Vernon Public Utilities Residential EV Charger Incentive Program",
+    "relevant_to_charger_rebate": "true",
+    "application_deadline": "N/A",
+    "commercial_level_2_rebate": "N/A",
+    "commercial_level_2_eligibility": "N/A",
+    "commercial_dc_fast_rebate": "N/A",
+    "commercial_dc_fast_eligibility": "N/A",
+    "commercial_panel_upgrade_rebate": "N/A",
+    "commercial_max_rebate": "N/A",
+    "commercial_summary": "N/A",
+    "residential_level_2_rebate": "up to $2,500",
+    "residential_level_2_eligibility": "New, 'Wi-Fi enabled' or 'internet connected' Level 2 EV charger installed at the customer's residence",
+    "residential_panel_upgrade_rebate": "N/A",
+    "residential_max_rebate": "$2,500",
+    "residential_summary": "Vernon Public Utilities offers up to $2,500 in rebates for residential customers who install a new, Wi-Fi enabled Level 2 EV charger at their residence."
+  },
+  {
     "provider": "Riverside",
     "url": "https://riversideca.gov/utilities/residents/rebates/electrify-riverside",
     "program_name": "Electrify Your Ride EV Rebates",
@@ -150,6 +169,25 @@
     "residential_panel_upgrade_rebate": "N/A",
     "residential_max_rebate": "N/A",
     "residential_summary": "Residential customers who install an Energy Star\u00ae Level 2 EV charger are eligible for a $150 rebate."
+  },
+  {
+    "provider": "Ukiah",
+    "url": "https://ukiah.chooseev.com/promos/",
+    "program_name": "City of Ukiah Level 2 Electric Vehicle Charger Rebate",
+    "relevant_to_charger_rebate": "true",
+    "application_deadline": "N/A",
+    "commercial_level_2_rebate": "$4,000",
+    "commercial_level_2_eligibility": "Before Installation: Pre-approval is required to ensure eligibility and availability of funds.",
+    "commercial_dc_fast_rebate": "N/A",
+    "commercial_dc_fast_eligibility": "N/A",
+    "commercial_panel_upgrade_rebate": "N/A",
+    "commercial_max_rebate": "N/A",
+    "commercial_summary": "The City of Ukiah Electric Utility Department offers a $4000 rebate for workplace or public Level 2 chargers.",
+    "residential_level_2_rebate": "$500",
+    "residential_level_2_eligibility": "Before Installation: Pre-approval is required to ensure eligibility and availability of funds.",
+    "residential_panel_upgrade_rebate": "N/A",
+    "residential_max_rebate": "N/A",
+    "residential_summary": "The City of Ukiah Electric Utility Department offers a $500 rebate for residential customers who purchase a new Level 2 electric vehicle charging station that meets specific requirements."
   },
   {
     "provider": "Pinole",
