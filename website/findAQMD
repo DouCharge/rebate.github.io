@@ -1,0 +1,81 @@
+function findAQMD() {
+    const countyInput = document.getElementById("countyInput").value.trim();
+
+    let aqmd = "Unknown AQMD"; // Default value
+
+    // Map counties to AQMDs using if-else statements
+    if (countyInput === "Amador") {
+        aqmd = "Amador County APCD";
+    } else if (countyInput === "Los Angeles (Antelope Valley region)") {
+        aqmd = "Antelope Valley AQMD";
+    } else if (["Alameda", "Contra Costa", "Marin", "Napa", "San Francisco", "San Mateo", "Santa Clara", "Solano (western portion)", "Sonoma (southern portion)"].includes(countyInput)) {
+        aqmd = "Bay Area AQMD";
+    } else if (countyInput === "Butte") {
+        aqmd = "Butte County AQMD";
+    } else if (countyInput === "Calaveras") {
+        aqmd = "Calaveras County APCD";
+    } else if (countyInput === "Colusa") {
+        aqmd = "Colusa County APCD";
+    } else if (countyInput === "Kern (eastern portion)") {
+        aqmd = "Eastern Kern APCD";
+    } else if (countyInput === "El Dorado") {
+        aqmd = "El Dorado County AQMD";
+    } else if (["Sutter", "Yuba"].includes(countyInput)) {
+        aqmd = "Feather River AQMD";
+    } else if (countyInput === "Glenn") {
+        aqmd = "Glenn County APCD";
+    } else if (["Alpine", "Inyo", "Mono"].includes(countyInput)) {
+        aqmd = "Great Basin Unified APCD";
+    } else if (countyInput === "Imperial") {
+        aqmd = "Imperial County APCD";
+    } else if (countyInput === "Lake") {
+        aqmd = "Lake County AQMD";
+    } else if (countyInput === "Lassen") {
+        aqmd = "Lassen County APCD";
+    } else if (countyInput === "Mariposa") {
+        aqmd = "Mariposa County APCD";
+    } else if (countyInput === "Mendocino") {
+        aqmd = "Mendocino County AQMD";
+    } else if (countyInput === "Modoc") {
+        aqmd = "Modoc County APCD";
+    } else if (["San Bernardino (northern portion)", "Riverside (eastern portion)"].includes(countyInput)) {
+        aqmd = "Mojave Desert AQMD";
+    } else if (["Monterey", "San Benito", "Santa Cruz"].includes(countyInput)) {
+        aqmd = "Monterey Bay Air Resources District";
+    } else if (["Del Norte", "Humboldt", "Trinity"].includes(countyInput)) {
+        aqmd = "North Coast Unified AQMD";
+    } else if (["Nevada", "Plumas", "Sierra"].includes(countyInput)) {
+        aqmd = "Northern Sierra AQMD";
+    } else if (countyInput === "Sonoma (northern portion)") {
+        aqmd = "Northern Sonoma County APCD";
+    } else if (countyInput === "Placer") {
+        aqmd = "Placer County APCD";
+    } else if (countyInput === "Sacramento") {
+        aqmd = "Sacramento Metropolitan AQMD";
+    } else if (countyInput === "San Diego") {
+        aqmd = "San Diego County APCD";
+    } else if (["Fresno", "Kings", "Madera", "Merced", "San Joaquin", "Stanislaus", "Tulare", "Kern (portions)"].includes(countyInput)) {
+        aqmd = "San Joaquin Valley APCD";
+    } else if (countyInput === "San Luis Obispo") {
+        aqmd = "San Luis Obispo County APCD";
+    } else if (countyInput === "Santa Barbara") {
+        aqmd = "Santa Barbara County APCD";
+    } else if (countyInput === "Shasta") {
+        aqmd = "Shasta County AQMD";
+    } else if (countyInput === "Siskiyou") {
+        aqmd = "Siskiyou County APCD";
+    } else if (["Los Angeles", "Orange", "San Bernardino (western portion)", "Riverside (western portion)"].includes(countyInput)) {
+        aqmd = "South Coast AQMD";
+    } else if (countyInput === "Tehama") {
+        aqmd = "Tehama County APCD";
+    } else if (countyInput === "Tuolumne") {
+        aqmd = "Tuolumne County APCD";
+    } else if (countyInput === "Ventura") {
+        aqmd = "Ventura County APCD";
+    } else if (["Yolo", "Solano (eastern portion)"].includes(countyInput)) {
+        aqmd = "Yolo-Solano AQMD";
+    }
+
+    // Output the AQMD
+    document.getElementById("result").innerText = "The AQMD for " + countyInput + " County is: " + aqmd;
+}
