@@ -152,25 +152,6 @@
     "residential_summary": "The City of Lodi offers rebates for the purchase and installation of Level 2 chargers for residential properties up to $750, including income-qualified residents."
   },
   {
-    "provider": "Azusa",
-    "url": "https://www.azusaca.gov/1625/Plug-In-Electric-Vehicles",
-    "program_name": "N/A",
-    "relevant_to_charger_rebate": "true",
-    "application_deadline": "N/A",
-    "commercial_level_2_rebate": "N/A",
-    "commercial_level_2_eligibility": "N/A",
-    "commercial_dc_fast_rebate": "N/A",
-    "commercial_dc_fast_eligibility": "N/A",
-    "commercial_panel_upgrade_rebate": "N/A",
-    "commercial_max_rebate": "N/A",
-    "commercial_summary": "N/A",
-    "residential_level_2_rebate": "$150",
-    "residential_level_2_eligibility": "Customers who install an Energy Star\u00ae Level 2 (240) EV charger in their residence.",
-    "residential_panel_upgrade_rebate": "N/A",
-    "residential_max_rebate": "N/A",
-    "residential_summary": "Residential customers who install an Energy Star\u00ae Level 2 EV charger are eligible for a $150 rebate."
-  },
-  {
     "provider": "Ukiah",
     "url": "https://ukiah.chooseev.com/promos/",
     "program_name": "City of Ukiah Level 2 Electric Vehicle Charger Rebate",
