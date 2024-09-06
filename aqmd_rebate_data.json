@@ -1,6 +1,6 @@
 [
   {
-    "Provider": "Bay Area Air Quality Management District",
+    "Provider": "Bay Area AQMD",
     "Url": "https://www.baaqmd.gov/funding-and-incentives/residents/clean-cars-for-all/resources/charging-your-ev",
     "Program_name": "Electric Vehicle Charger Rebate",
     "Relevant_to_charger_rebate": "true",
@@ -19,7 +19,7 @@
     "Residential_summary": "The Electric Vehicle Charger Rebate program offers up to $2,000 for a level 2 home charger installation for residents who own a new, used, or leased plug-in hybrid (PHEV) or battery electric vehicle (BEV)."
   },
   {
-    "Provider": "South Coast Air Quality Management District",
+    "Provider": "South Coast AQMD",
     "Url": "http://www.aqmd.gov/home/programs/community/community-detail?title=ev-charging-incentive",
     "Program_name": "Residential Electric Vehicle (EV) Charging Incentive Program",
     "Relevant_to_charger_rebate": "true",
@@ -38,7 +38,7 @@
     "Residential_summary": "The program offers rebates for hard-wired Level 2 EV chargers installed by a licensed electrician in the South Coast AQMD\u2019s four-county jurisdiction. The program is administered on a first-come, first-served basis and provides up to a $250 rebate or the cost paid for the charger, whichever is lower. "
   },
   {
-    "Provider": "San Joaquin Valley Air Pollution Control District",
+    "Provider": "San Joaquin Valley APCD",
     "Url": "https://ww2.valleyair.org/grants/charge-up/",
     "Program_name": "Charge Up! Electric Vehicle Charger Incentive Program",
     "Relevant_to_charger_rebate": "true",
@@ -57,7 +57,7 @@
     "Residential_summary": "$6,000 per Level 2 charger or $25,000 per DC fast charger. "
   },
   {
-    "Provider": "Antelope Valley Air Quality Management District",
+    "Provider": "Antelope Valley AQMD",
     "Url": "https://avaqmd.ca.gov/electric-vehicle-charging-station-program",
     "Program_name": "Electric Vehicle Charging Stations Program",
     "Relevant_to_charger_rebate": "true",
