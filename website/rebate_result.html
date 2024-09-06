@@ -14,40 +14,41 @@
     }
 
     // Get form data from URL parameters
-    const providerInput = getQueryParams('utility');
+    const utilityInput = getQueryParams('utility');
     const countyInput = getQueryParams('county');
     const cityInput = getQueryParams('city');
     const chargerTypeInput = getQueryParams('charger');
 
-    console.log('Provider:', providerInput);
+    console.log('Utility:', utilityInput);
     console.log('County:', countyInput);
     console.log('City:', cityInput);
     console.log('Charger Type:', chargerTypeInput);
 
     // Fetch all JSON files and process data
-    if ((providerInput || countyInput || cityInput) && chargerTypeInput) {
+    if ((utilityInput || countyInput || cityInput || aqmdInput) && chargerTypeInput) {
         Promise.all([
             fetch(utilityJsonUrl).then(response => response.json()),
             fetch(countyJsonUrl).then(response => response.json()),
-            fetch(cityJsonUrl).then(response => response.json())
+            fetch(cityJsonUrl).then(response => response.json()),
+            fetch(aqmdJsonUrl).then(response => response.json())
         ])
             .then(([utilityData, countyData, cityData]) => {
                 const results = [];
 
                 // Function to filter data based on the same logic
                 function filterData(item) {
-                    if (chargerTypeInput === 'Commercial' && item.commercial_summary !== 'N/A') {
+                    if (chargerTypeInput === 'Commercial' && item.Commercial_summary !== 'N/A') {
                         let result = {};
                         for (const key in item) {
-                            if (!key.startsWith('residential') && key !== 'relevant_to_charger_rebate' && item[key] !== 'N/A') {
+                            if (!key.startsWith('Residential') && key !== 'Relevant_to_charger_rebate' && item[key] !== 'N/A') {
                                 result[key] = item[key];
                             }
                         }
                         return result;
-                    } else if (chargerTypeInput === 'Residential' && item.residential_summary !== 'N/A') {
+                    } else if (chargerTypeInput === 'Residential' && item.Residential_summary !== 'N/A') {
                         let result = {};
                         for (const key in item) {
-                            if (!key.startsWith('commercial') && key !== 'relevant_to_charger_rebate' && item[key] !== 'N/A') {
+                            if (!key.startsWith('Commercial') && key !== 'Relevant_to_charger_rebate' && item[key] !== 'N/A') {
                                 result[key] = item[key];
                             }
                         }
@@ -58,7 +59,7 @@
 
                 // Filter and add results from utility JSON
                 utilityData.forEach(item => {
-                    if (item.provider === providerInput) {
+                    if (item.Provider === utilityInput) {
                         const filteredResult = filterData(item);
                         if (filteredResult) results.push(filteredResult);
                     }
@@ -66,7 +67,7 @@
 
                 // Filter and add results from county JSON
                 countyData.forEach(item => {
-                    if (item.county === countyInput) {
+                    if (item.Provider === countyInput) {
                         const filteredResult = filterData(item);
                         if (filteredResult) results.push(filteredResult);
                     }
@@ -74,7 +75,15 @@
 
                 // Filter and add results from city JSON
                 cityData.forEach(item => {
-                    if (item.city === cityInput) {
+                    if (item.Provider === cityInput) {
+                        const filteredResult = filterData(item);
+                        if (filteredResult) results.push(filteredResult);
+                    }
+                });
+
+                // Filter and add results from AQMD JSON
+                aqmdData.forEach(item => {
+                    if (item.Provider === aqmdInput) {
                         const filteredResult = filterData(item);
                         if (filteredResult) results.push(filteredResult);
                     }
