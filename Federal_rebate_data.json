@@ -1,0 +1,21 @@
+[
+    {
+      "Provider": "U.S. Department of Energy",
+      "Url": "https://afdc.energy.gov/laws/10513",
+      "Program_name": "Alternative Fuel Infrastructure Tax Credit",
+      "Relevant_to_charger_rebate": "true",
+      "Application_deadline": "Dec 31, 2032",
+      "Commercial_level_2_rebate": "N/A",
+      "Commercial_level_2_eligibility": "N/A",
+      "Commercial_dc_fast_rebate": "N/A",
+      "Commercial_dc_fast_eligibility": "N/A",
+      "Commercial_panel_upgrade_rebate": "N/A",
+      "Commercial_max_rebate": "N/A",
+      "Commercial_summary": "N/A",
+      "Residential_level_2_rebate": "Up to $1000",
+      "Residential_level_2_eligibility": "N/A",
+      "Residential_panel_upgrade_rebate": "N/A",
+      "Residential_max_rebate": "N/A",
+      "Residential_summary": "Consumers who purchase qualified residential fueling equipment between January 1, 2023, and December 31, 2032, may receive a tax credit of up to $1,000."
+    }
+  ]
