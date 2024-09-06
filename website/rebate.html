@@ -7,53 +7,6 @@
     <script>
         document.addEventListener('DOMContentLoaded', function () {
             // URL of the JSON file hosted externally
-            const jsonUrl = 'https://raw.githubusercontent.com/DouCharge/rebate/main/county_rebate_data.json';
-
-            // Function to populate the "Utility Provider" select field
-            function populateProviders() {
-                fetch(jsonUrl)
-                    .then(response => response.json())
-                    .then(data => {
-                        const utilityProviderSelect = document.getElementById('county');
-                        const providers = new Set(); // Use Set to avoid duplicate providers
-
-                        // Loop through the JSON data to extract unique providers
-                        data.forEach(item => {
-                            if (item.provider) {
-                                providers.add(item.provider);
-                            }
-                        });
-
-                        // Add each unique provider as an option in the select field
-                        providers.forEach(provider => {
-                            const option = document.createElement('option');
-                            option.value = provider;
-                            option.textContent = provider;
-                            utilityProviderSelect.appendChild(option);
-                        });
-
-                        // Add the "Other" option at the end of the list
-                        const otherOption = document.createElement('option');
-                        otherOption.value = 'Other';
-                        otherOption.textContent = 'Other';
-                        utilityProviderSelect.appendChild(otherOption);
-                    })
-                    .catch(error => console.error('Error fetching JSON:', error));
-            }
-
-            // Call the function to populate the providers when the page is loaded
-            populateProviders();
-        });
-    </script>
-</head>
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dynamic County Provider Form</title>
-    <script>
-        document.addEventListener('DOMContentLoaded', function () {
-            // URL of the JSON file hosted externally
             const jsonUrl = 'https://raw.githubusercontent.com/DouCharge/rebate/main/city_rebate_data.json';
 
             // Function to populate the "Utility Provider" select field
@@ -66,8 +19,8 @@
 
                         // Loop through the JSON data to extract unique providers
                         data.forEach(item => {
-                            if (item.provider) {
-                                providers.add(item.provider);
+                            if (item.Provider) {
+                                providers.add(item.Provider);
                             }
                         });
 
@@ -113,8 +66,8 @@
 
                         // Loop through the JSON data to extract unique providers
                         data.forEach(item => {
-                            if (item.provider) {
-                                providers.add(item.provider);
+                            if (item.Provider) {
+                                providers.add(item.Provider);
                             }
                         });
 
@@ -153,10 +106,68 @@
     <input type="email" id="email" name="email" required>
     <br><br>
 
-    <!-- County Provider Field (options populated dynamically) -->
-    <label for="county">County <span style="color: red;">*</span>:</label>
+    <!-- County Provider Field -->
+    <label for="county">California County <span style="color: red;">*</span>:</label>
     <select id="county" name="county" required>
         <option value="">Select your county</option>
+        <option value="Alameda">Alameda</option>
+        <option value="Alpine">Alpine</option>
+        <option value="Amador">Amador</option>
+        <option value="Butte">Butte</option>
+        <option value="Calaveras">Calaveras</option>
+        <option value="Colusa">Colusa</option>
+        <option value="Contra Costa">Contra Costa</option>
+        <option value="Del Norte">Del Norte</option>
+        <option value="El Dorado">El Dorado</option>
+        <option value="Fresno">Fresno</option>
+        <option value="Glenn">Glenn</option>
+        <option value="Humboldt">Humboldt</option>
+        <option value="Imperial">Imperial</option>
+        <option value="Inyo">Inyo</option>
+        <option value="Kern">Kern</option>
+        <option value="Kings">Kings</option>
+        <option value="Lake">Lake</option>
+        <option value="Lassen">Lassen</option>
+        <option value="Los Angeles">Los Angeles</option>
+        <option value="Madera">Madera</option>
+        <option value="Marin">Marin</option>
+        <option value="Mariposa">Mariposa</option>
+        <option value="Mendocino">Mendocino</option>
+        <option value="Merced">Merced</option>
+        <option value="Modoc">Modoc</option>
+        <option value="Mono">Mono</option>
+        <option value="Monterey">Monterey</option>
+        <option value="Napa">Napa</option>
+        <option value="Nevada">Nevada</option>
+        <option value="Orange">Orange</option>
+        <option value="Placer">Placer</option>
+        <option value="Plumas">Plumas</option>
+        <option value="Riverside">Riverside</option>
+        <option value="Sacramento">Sacramento</option>
+        <option value="San Benito">San Benito</option>
+        <option value="San Bernardino">San Bernardino</option>
+        <option value="San Diego">San Diego</option>
+        <option value="San Francisco">San Francisco</option>
+        <option value="San Joaquin">San Joaquin</option>
+        <option value="San Luis Obispo">San Luis Obispo</option>
+        <option value="San Mateo">San Mateo</option>
+        <option value="Santa Barbara">Santa Barbara</option>
+        <option value="Santa Clara">Santa Clara</option>
+        <option value="Santa Cruz">Santa Cruz</option>
+        <option value="Shasta">Shasta</option>
+        <option value="Sierra">Sierra</option>
+        <option value="Siskiyou">Siskiyou</option>
+        <option value="Solano">Solano</option>
+        <option value="Sonoma">Sonoma</option>
+        <option value="Stanislaus">Stanislaus</option>
+        <option value="Sutter">Sutter</option>
+        <option value="Tehama">Tehama</option>
+        <option value="Trinity">Trinity</option>
+        <option value="Tulare">Tulare</option>
+        <option value="Tuolumne">Tuolumne</option>
+        <option value="Ventura">Ventura</option>
+        <option value="Yolo">Yolo</option>
+        <option value="Yuba">Yuba</option>
     </select>
     <br><br>
 
