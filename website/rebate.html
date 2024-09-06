@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dynamic County Provider Form</title>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            // URL of the JSON file hosted externally
+            const jsonUrl = 'https://raw.githubusercontent.com/DouCharge/rebate/main/county_rebate_data.json';
+
+            // Function to populate the "Utility Provider" select field
+            function populateProviders() {
+                fetch(jsonUrl)
+                    .then(response => response.json())
+                    .then(data => {
+                        const utilityProviderSelect = document.getElementById('county');
+                        const providers = new Set(); // Use Set to avoid duplicate providers
+
+                        // Loop through the JSON data to extract unique providers
+                        data.forEach(item => {
+                            if (item.provider) {
+                                providers.add(item.provider);
+                            }
+                        });
+
+                        // Add each unique provider as an option in the select field
+                        providers.forEach(provider => {
+                            const option = document.createElement('option');
+                            option.value = provider;
+                            option.textContent = provider;
+                            utilityProviderSelect.appendChild(option);
+                        });
+
+                        // Add the "Other" option at the end of the list
+                        const otherOption = document.createElement('option');
+                        otherOption.value = 'Other';
+                        otherOption.textContent = 'Other';
+                        utilityProviderSelect.appendChild(otherOption);
+                    })
+                    .catch(error => console.error('Error fetching JSON:', error));
+            }
+
+            // Call the function to populate the providers when the page is loaded
+            populateProviders();
+        });
+    </script>
+</head>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dynamic County Provider Form</title>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            // URL of the JSON file hosted externally
+            const jsonUrl = 'https://raw.githubusercontent.com/DouCharge/rebate/main/city_rebate_data.json';
+
+            // Function to populate the "Utility Provider" select field
+            function populateProviders() {
+                fetch(jsonUrl)
+                    .then(response => response.json())
+                    .then(data => {
+                        const utilityProviderSelect = document.getElementById('city');
+                        const providers = new Set(); // Use Set to avoid duplicate providers
+
+                        // Loop through the JSON data to extract unique providers
+                        data.forEach(item => {
+                            if (item.provider) {
+                                providers.add(item.provider);
+                            }
+                        });
+
+                        // Add each unique provider as an option in the select field
+                        providers.forEach(provider => {
+                            const option = document.createElement('option');
+                            option.value = provider;
+                            option.textContent = provider;
+                            utilityProviderSelect.appendChild(option);
+                        });
+
+                        // Add the "Other" option at the end of the list
+                        const otherOption = document.createElement('option');
+                        otherOption.value = 'Other';
+                        otherOption.textContent = 'Other';
+                        utilityProviderSelect.appendChild(otherOption);
+                    })
+                    .catch(error => console.error('Error fetching JSON:', error));
+            }
+
+            // Call the function to populate the providers when the page is loaded
+            populateProviders();
+        });
+    </script>
+</head>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dynamic Utility Provider Form</title>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            // URL of the JSON file hosted externally
+            const jsonUrl = 'https://raw.githubusercontent.com/DouCharge/rebate/main/utility_rebate_data.json';
+
+            // Function to populate the "Utility Provider" select field
+            function populateProviders() {
+                fetch(jsonUrl)
+                    .then(response => response.json())
+                    .then(data => {
+                        const utilityProviderSelect = document.getElementById('utility');
+                        const providers = new Set(); // Use Set to avoid duplicate providers
+
+                        // Loop through the JSON data to extract unique providers
+                        data.forEach(item => {
+                            if (item.provider) {
+                                providers.add(item.provider);
+                            }
+                        });
+
+                        // Add each unique provider as an option in the select field
+                        providers.forEach(provider => {
+                            const option = document.createElement('option');
+                            option.value = provider;
+                            option.textContent = provider;
+                            utilityProviderSelect.appendChild(option);
+                        });
+
+                        // Add the "Other" option at the end of the list
+                        const otherOption = document.createElement('option');
+                        otherOption.value = 'Other';
+                        otherOption.textContent = 'Other';
+                        utilityProviderSelect.appendChild(otherOption);
+                    })
+                    .catch(error => console.error('Error fetching JSON:', error));
+            }
+
+            // Call the function to populate the providers when the page is loaded
+            populateProviders();
+        });
+    </script>
+</head>
+
+<h1>Rebate Form</h1>
+<form id="rebateForm">
+    <!-- TODO: Uncomment-out -->
+    <!-- Name Field -->
+    <!-- <label for="name">Name:</label> -->
+    <!-- <input type="text" id="name" name="name"> -->
+    <!-- <br><br> -->
+
+    <!-- TODO: Uncomment-out -->
+    <!-- Email Field (required, basic format validation) -->
+    <!-- <label for="email">Email <span style="color: red;">*</span>:</label> -->
+    <!-- <input type="email" id="email" name="email" required> -->
+    <!-- <br><br> -->
+
+    <!-- County Provider Field (options populated dynamically) -->
+    <label for="county">County <span style="color: red;">*</span>:</label>
+    <select id="county" name="county" required>
+        <option value="">Select your county</option>
+    </select>
+    <br><br>
+
+    <!-- City Provider Field (options populated dynamically) -->
+    <label for="city">City <span style="color: red;">*</span>:</label>
+    <select id="city" name="city" required>
+        <option value="">Select your city</option>
+    </select>
+    <br><br>
+
+    <!-- Utility Provider Field (options populated dynamically) -->
+    <label for="utility">Utility Provider <span style="color: red;">*</span>:</label>
+    <select id="utility" name="utility" required>
+        <option value="">Select your utility provider</option>
+    </select>
+    <br><br>
+
+    <!-- Charger Type Field (Commercial or Residential) -->
+    <label for="charger">Charger Type <span style="color: red;">*</span>:</label>
+    <select id="charger" name="charger" required>
+        <option value="Commercial">Commercial</option>
+        <option value="Residential">Residential</option>
+    </select>
+    <br><br>
+
+    <!-- Additional Comments Field -->
+    <label for="comments">Additional Comments:</label>
+    <textarea id="comments" name="comments" rows="4" cols="50"
+        placeholder="Enter any additional information here"></textarea>
+    <br><br>
+
+    <!-- Submit Button -->
+    <button type="submit">Submit</button>
+</form>
+
+
+
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rebate Form</title>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const form = document.querySelector('#rebateForm');
+
+            form.onsubmit = function (event) {
+                event.preventDefault(); // Prevent default form submission
+
+                // Get form values
+                // TODO: Uncomment-out
+                // const name = document.querySelector('[name="name"]').value;
+                // const email = document.querySelector('[name="email"]').value;
+                const county = document.querySelector('[name="county"]').value;
+                const city = document.querySelector('[name="city"]').value;
+                const utility = document.querySelector('[name="utility"]').value;
+                const charger = document.querySelector('[name="charger"]').value;
+                const comments = document.querySelector('[name="comments"]').value;
+
+                // Basic email format validation
+                const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                if (!emailPattern.test(email)) {
+                    alert('Please enter a valid email address.');
+                    return;
+                }
+
+                // Redirect to rebate-result page with selected parameters
+                const url = `/rebate-result?county=${encodeURIComponent(county)}&utility=${encodeURIComponent(utility)}&charger=${encodeURIComponent(charger)}`;
+                window.location.href = url;
+            };
+        });
+    </script>
+</head>
+
+</html>
