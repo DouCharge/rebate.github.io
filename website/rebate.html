@@ -143,17 +143,15 @@
 
 <h1>Rebate Form</h1>
 <form id="rebateForm">
-    <!-- TODO: Uncomment-out -->
     <!-- Name Field -->
-    <!-- <label for="name">Name:</label> -->
-    <!-- <input type="text" id="name" name="name"> -->
-    <!-- <br><br> -->
+    <label for="name">Name:</label>
+    <input type="text" id="name" name="name">
+    <br><br>
 
-    <!-- TODO: Uncomment-out -->
     <!-- Email Field (required, basic format validation) -->
-    <!-- <label for="email">Email <span style="color: red;">*</span>:</label> -->
-    <!-- <input type="email" id="email" name="email" required> -->
-    <!-- <br><br> -->
+    <label for="email">Email <span style="color: red;">*</span>:</label>
+    <input type="email" id="email" name="email" required>
+    <br><br>
 
     <!-- County Provider Field (options populated dynamically) -->
     <label for="county">County <span style="color: red;">*</span>:</label>
@@ -167,6 +165,11 @@
     <select id="city" name="city" required>
         <option value="">Select your city</option>
     </select>
+    <br><br>
+
+    <!-- Address Field -->
+    <label for="address">Address:</label>
+    <textarea id="address" name="address" rows="1" cols="50" placeholder="Enter your address"></textarea>
     <br><br>
 
     <!-- Utility Provider Field (options populated dynamically) -->
@@ -187,7 +190,7 @@
     <!-- Additional Comments Field -->
     <label for="comments">Additional Comments:</label>
     <textarea id="comments" name="comments" rows="4" cols="50"
-        placeholder="Enter any additional information here"></textarea>
+        placeholder="Enter any additional information or comments"></textarea>
     <br><br>
 
     <!-- Submit Button -->
@@ -210,11 +213,11 @@
                 event.preventDefault(); // Prevent default form submission
 
                 // Get form values
-                // TODO: Uncomment-out
-                // const name = document.querySelector('[name="name"]').value;
-                // const email = document.querySelector('[name="email"]').value;
+                const name = document.querySelector('[name="name"]').value;
+                const email = document.querySelector('[name="email"]').value;
                 const county = document.querySelector('[name="county"]').value;
                 const city = document.querySelector('[name="city"]').value;
+                const address = document.querySelector('[name="address"]').value;
                 const utility = document.querySelector('[name="utility"]').value;
                 const charger = document.querySelector('[name="charger"]').value;
                 const comments = document.querySelector('[name="comments"]').value;
@@ -227,7 +230,7 @@
                 }
 
                 // Redirect to rebate-result page with selected parameters
-                const url = `/rebate-result?county=${encodeURIComponent(county)}&utility=${encodeURIComponent(utility)}&charger=${encodeURIComponent(charger)}`;
+                const url = `/rebate-result?county=${encodeURIComponent(county)}&city=${encodeURIComponent(city)}&utility=${encodeURIComponent(utility)}&charger=${encodeURIComponent(charger)}`;
                 window.location.href = url;
             };
         });

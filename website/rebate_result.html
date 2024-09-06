@@ -1,0 +1,130 @@
+<script>
+    console.error("enter result page");
+
+    // URLs of the JSON files hosted externally
+    const utilityJsonUrl = 'https://raw.githubusercontent.com/DouCharge/rebate/main/utility_rebate_data.json';
+    const countyJsonUrl = 'https://raw.githubusercontent.com/DouCharge/rebate/main/county_rebate_data.json';
+    const cityJsonUrl = 'https://raw.githubusercontent.com/DouCharge/rebate/main/city_rebate_data.json';
+
+    // Function to get query parameters from the URL (e.g., the user input from the form)
+    function getQueryParams(param) {
+        const urlParams = new URLSearchParams(window.location.search);
+        return urlParams.get(param);
+    }
+
+    // Get form data from URL parameters
+    const providerInput = getQueryParams('utility');
+    const countyInput = getQueryParams('county');
+    const cityInput = getQueryParams('city');
+    const chargerTypeInput = getQueryParams('charger');
+
+    console.log('Provider:', providerInput);
+    console.log('County:', countyInput);
+    console.log('City:', cityInput);
+    console.log('Charger Type:', chargerTypeInput);
+
+    // Fetch all JSON files and process data
+    if ((providerInput || countyInput || cityInput) && chargerTypeInput) {
+        Promise.all([
+            fetch(utilityJsonUrl).then(response => response.json()),
+            fetch(countyJsonUrl).then(response => response.json()),
+            fetch(cityJsonUrl).then(response => response.json())
+        ])
+            .then(([utilityData, countyData, cityData]) => {
+                const results = [];
+
+                // Function to filter data based on the same logic
+                function filterData(item) {
+                    if (chargerTypeInput === 'Commercial' && item.commercial_summary !== 'N/A') {
+                        let result = {};
+                        for (const key in item) {
+                            if (!key.startsWith('residential') && key !== 'relevant_to_charger_rebate' && item[key] !== 'N/A') {
+                                result[key] = item[key];
+                            }
+                        }
+                        return result;
+                    } else if (chargerTypeInput === 'Residential' && item.residential_summary !== 'N/A') {
+                        let result = {};
+                        for (const key in item) {
+                            if (!key.startsWith('commercial') && key !== 'relevant_to_charger_rebate' && item[key] !== 'N/A') {
+                                result[key] = item[key];
+                            }
+                        }
+                        return result;
+                    }
+                    return null;
+                }
+
+                // Filter and add results from utility JSON
+                utilityData.forEach(item => {
+                    if (item.provider === providerInput) {
+                        const filteredResult = filterData(item);
+                        if (filteredResult) results.push(filteredResult);
+                    }
+                });
+
+                // Filter and add results from county JSON
+                countyData.forEach(item => {
+                    if (item.county === countyInput) {
+                        const filteredResult = filterData(item);
+                        if (filteredResult) results.push(filteredResult);
+                    }
+                });
+
+                // Filter and add results from city JSON
+                cityData.forEach(item => {
+                    if (item.city === cityInput) {
+                        const filteredResult = filterData(item);
+                        if (filteredResult) results.push(filteredResult);
+                    }
+                });
+
+                // Display results
+                displayResults(results);
+            })
+            .catch(error => console.error('Error fetching JSON:', error));
+    } else {
+        console.error("fields missing");
+    }
+
+    // Function to display results inside a green-bordered box, full width
+    function displayResults(results) {
+        const outputDiv = document.getElementById('output');
+        if (results.length === 0) {
+            outputDiv.innerHTML = '<p>No matching rebates found.</p>';
+            return;
+        }
+        outputDiv.innerHTML =
+            '<h1>Congrats! You may be eligible for the following rebates. Contact us to learn more.</h1>'
+
+        results.forEach(result => {
+            const resultDiv = document.createElement('div');
+            resultDiv.style.border = '2px solid green'; // Add a green border around the result block
+            resultDiv.style.padding = '20px';
+            resultDiv.style.marginBottom = '20px';
+            resultDiv.style.width = '100%';  // Ensure the result block takes full width
+            resultDiv.style.boxSizing = 'border-box'; // Include padding and border in width calculation
+
+            for (const key in result) {
+                const p = document.createElement('p');
+                p.textContent = `${key.replace(/_/g, ' ')}: ${result[key]}`;
+                resultDiv.appendChild(p);
+            }
+
+            outputDiv.appendChild(resultDiv);
+        });
+    }
+</script>
+
+<style>
+    /* Ensure the output container takes up full width */
+    #output {
+        width: 100%;
+        max-width: 100%;
+        padding: 20px;
+        margin: 0 auto;
+        box-sizing: border-box;
+    }
+</style>
+
+<div id="output"></div>
