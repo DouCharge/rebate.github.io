@@ -4,6 +4,75 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dynamic County Provider Form</title>
+        <style>
+      /* Reset the margin and padding */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    padding: 10px;
+    /* background: #f4f4f4; */
+}
+
+h1 {
+    text-align: center;
+    margin-bottom: 32px;
+}
+
+form {
+    /* background: #fff; */
+    padding:0px;
+    border-radius: 8px;
+    /* box-shadow: 0 0 10px rgba(0,0,0,0.1); */
+    width: 80%;
+    margin: 0 auto;
+}
+
+label {
+    display: block;
+    margin-bottom: 10px;
+    font-weight: bold;
+}
+
+input[type="text"],
+input[type="email"],
+textarea,
+select {
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 25px;
+}
+
+textarea {
+    height: 100px; /* Set a fixed height for textareas */
+    resize: none; /* Disables resizing */
+}
+
+button {
+    width: 25%;
+    padding: 5px;
+    background-color: #3E2723;
+    color: white;
+    border: none;
+    border-radius: 16px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+button:hover {
+    background-color: #45a049;
+}
+
+span {
+    color: red;
+}
+</style>
     <script>
         document.addEventListener('DOMContentLoaded', function () {
             // URL of the JSON file hosted externally
