@@ -1,0 +1,542 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      /* Reset the margin and padding */
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: Arial, sans-serif;
+        padding: 10px;
+        /* background: #f4f4f4; */
+      }
+
+      h1 {
+        text-align: center;
+        margin-bottom: 32px;
+      }
+
+      form {
+        /* background: #fff; */
+        padding: 0px;
+        border-radius: 8px;
+        /* box-shadow: 0 0 10px rgba(0,0,0,0.1); */
+        width: 80%;
+        margin: 0 auto;
+      }
+
+      label {
+        display: block;
+        margin-bottom: 10px;
+        font-weight: bold;
+      }
+
+      input[type="text"],
+      input[type="email"],
+      textarea,
+      select {
+        width: 100%;
+        padding: 12px;
+        margin-bottom: 10px;
+        border: 1px solid #ccc;
+        border-radius: 25px;
+      }
+
+      textarea {
+        height: 100px;
+        /* Set a fixed height for textareas */
+        resize: none;
+        /* Disables resizing */
+      }
+
+      button {
+        width: 25%;
+        padding: 5px;
+        background-color: #3e2723;
+        color: white;
+        border: none;
+        border-radius: 16px;
+        cursor: pointer;
+        font-size: 16px;
+      }
+
+      button:hover {
+        background-color: #45a049;
+      }
+
+      span {
+        color: red;
+      }
+    </style>
+  </head>
+
+  <body>
+    <h1>Rebate Form</h1>
+    <form id="rebateForm">
+      <!-- Name Field -->
+      <label for="name">Name:</label>
+      <input type="text" id="name" name="name" />
+      <br /><br />
+
+      <!-- Email Field (required, basic format validation) -->
+      <label for="email">Email <span style="color: red">*</span>:</label>
+      <input type="email" id="email" name="email" required />
+      <br /><br />
+
+      <!-- County Provider Field -->
+      <label for="county">California County <span style="color: red">*</span>:</label>
+      <select id="county" name="county" required>
+        <option value="">Select your county</option>
+        <option value="Alameda">Alameda</option>
+        <option value="Alpine">Alpine</option>
+        <option value="Amador">Amador</option>
+        <option value="Butte">Butte</option>
+        <option value="Calaveras">Calaveras</option>
+        <option value="Colusa">Colusa</option>
+        <option value="Contra Costa">Contra Costa</option>
+        <option value="Del Norte">Del Norte</option>
+        <option value="El Dorado">El Dorado</option>
+        <option value="Fresno">Fresno</option>
+        <option value="Glenn">Glenn</option>
+        <option value="Humboldt">Humboldt</option>
+        <option value="Imperial">Imperial</option>
+        <option value="Inyo">Inyo</option>
+        <option value="Kern">Kern</option>
+        <option value="Kings">Kings</option>
+        <option value="Lake">Lake</option>
+        <option value="Lassen">Lassen</option>
+        <option value="Los Angeles">Los Angeles</option>
+        <option value="Madera">Madera</option>
+        <option value="Marin">Marin</option>
+        <option value="Mariposa">Mariposa</option>
+        <option value="Mendocino">Mendocino</option>
+        <option value="Merced">Merced</option>
+        <option value="Modoc">Modoc</option>
+        <option value="Mono">Mono</option>
+        <option value="Monterey">Monterey</option>
+        <option value="Napa">Napa</option>
+        <option value="Nevada">Nevada</option>
+        <option value="Orange">Orange</option>
+        <option value="Placer">Placer</option>
+        <option value="Plumas">Plumas</option>
+        <option value="Riverside">Riverside</option>
+        <option value="Sacramento">Sacramento</option>
+        <option value="San Benito">San Benito</option>
+        <option value="San Bernardino">San Bernardino</option>
+        <option value="San Diego">San Diego</option>
+        <option value="San Francisco">San Francisco</option>
+        <option value="San Joaquin">San Joaquin</option>
+        <option value="San Luis Obispo">San Luis Obispo</option>
+        <option value="San Mateo">San Mateo</option>
+        <option value="Santa Barbara">Santa Barbara</option>
+        <option value="Santa Clara">Santa Clara</option>
+        <option value="Santa Cruz">Santa Cruz</option>
+        <option value="Shasta">Shasta</option>
+        <option value="Sierra">Sierra</option>
+        <option value="Siskiyou">Siskiyou</option>
+        <option value="Solano">Solano</option>
+        <option value="Sonoma">Sonoma</option>
+        <option value="Stanislaus">Stanislaus</option>
+        <option value="Sutter">Sutter</option>
+        <option value="Tehama">Tehama</option>
+        <option value="Trinity">Trinity</option>
+        <option value="Tulare">Tulare</option>
+        <option value="Tuolumne">Tuolumne</option>
+        <option value="Ventura">Ventura</option>
+        <option value="Yolo">Yolo</option>
+        <option value="Yuba">Yuba</option>
+      </select>
+      <br /><br />
+
+      <!-- City Provider Field (options populated dynamically) -->
+      <label for="city">City <span style="color: red">*</span>:</label>
+      <select id="city" name="city" required>
+        <option value="">Select your city</option>
+      </select>
+      <br /><br />
+
+      <!-- Address Field -->
+      <label for="address">Address:</label>
+      <textarea id="address" name="address" rows="1" cols="50" placeholder="Enter your address"></textarea>
+      <br /><br />
+
+      <!-- Utility Provider Field (options populated dynamically) -->
+      <label for="utility">Utility Provider <span style="color: red">*</span>:</label>
+      <select id="utility" name="utility" required>
+        <option value="">Select your utility provider</option>
+      </select>
+      <br /><br />
+
+      <!-- Charger Type Field (Commercial or Residential) -->
+      <label for="charger">Charger Type <span style="color: red">*</span>:</label>
+      <select id="charger" name="charger" required>
+        <option value="Commercial">Commercial</option>
+        <option value="Residential">Residential</option>
+      </select>
+      <br /><br />
+
+      <!-- Additional Comments Field -->
+      <label for="comments">Additional Comments:</label>
+      <textarea id="comments" name="comments" rows="4" cols="50" placeholder="Enter any additional information or comments"></textarea>
+      <br /><br />
+
+      <!-- Submit Button -->
+      <button type="submit">Submit</button>
+    </form>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+    <script>
+      ;(function () {
+        emailjs.init({
+          publicKey: "_sve_dHARRrVuYQHO",
+        })
+      })()
+      //   function sendMail() {
+      //     var templateParams = {
+      //       to_name: "2028880294@qq.com",
+      //       from_name: "yqj741452@gmail.com",
+      //       html:"<h2>这是一个测试邮件</h2>"
+      //     }
+      //     emailjs.send("service_4598pds", "template_15dzfh4", templateParams).then(
+      //       function (response) {
+      //         alert("Email sent successfully: " + response.status)
+      //       },
+      //       function (error) {
+      //         alert("Email sending failed: " + error)
+      //       }
+      //     )
+      //   }
+      document.addEventListener("DOMContentLoaded", function () {
+        // URL of the JSON file hosted externally
+        const jsonUrl = "https://raw.githubusercontent.com/DouCharge/rebate/main/city_rebate_data.json"
+
+        // Function to populate the "Utility Provider" select field
+        function populateProviders() {
+          fetch(jsonUrl)
+            .then(response => response.json())
+            .then(data => {
+              const utilityProviderSelect = document.getElementById("city")
+              const providers = new Set() // Use Set to avoid duplicate providers
+
+              // Loop through the JSON data to extract unique providers
+              data.forEach(item => {
+                if (item.Provider) {
+                  providers.add(item.Provider)
+                }
+              })
+
+              // Add each unique provider as an option in the select field
+              providers.forEach(provider => {
+                const option = document.createElement("option")
+                option.value = provider
+                option.textContent = provider
+                utilityProviderSelect.appendChild(option)
+              })
+
+              // Add the "Other" option at the end of the list
+              const otherOption = document.createElement("option")
+              otherOption.value = "Other"
+              otherOption.textContent = "Other"
+              utilityProviderSelect.appendChild(otherOption)
+            })
+            .catch(error => console.error("Error fetching JSON:", error))
+        }
+
+        // Call the function to populate the providers when the page is loaded
+        populateProviders()
+      })
+      document.addEventListener("DOMContentLoaded", function () {
+        const form = document.querySelector("#rebateForm")
+
+        form.onsubmit = function (event) {
+          event.preventDefault() // Prevent default form submission
+
+          // Get form values
+          const name = document.querySelector('[name="name"]').value
+          const email = document.querySelector('[name="email"]').value
+          const county = document.querySelector('[name="county"]').value
+          const city = document.querySelector('[name="city"]').value
+          const address = document.querySelector('[name="address"]').value
+          const utility = document.querySelector('[name="utility"]').value
+          const charger = document.querySelector('[name="charger"]').value
+          const comments = document.querySelector('[name="comments"]').value
+
+          // Basic email format validation
+          const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
+          if (!emailPattern.test(email)) {
+            alert("Please enter a valid email address.")
+            return
+          }
+
+          const html = `
+            <h2>Rebate Form</h2>
+            <p>Name: ${name}</p>
+            <p>Email: ${email}</p>
+            <p>County: ${county}</p>
+            <p>City: ${city}</p>
+            <p>Address: ${address}</p>
+            <p>Utility Provider: ${utility}</p>
+            <p>Charger: ${charger}</p>
+            <p>Comments: ${comments}</p>
+          `
+          const templateParams = {
+            to_name: "yqj741452@gmail.com",
+            from_name: "yqj741452@gmail.com",
+            html: html,
+          }
+          emailjs.send("service_4598pds", "template_15dzfh4", templateParams).then(
+            function (response) {
+              const utilityJsonUrl = "https://raw.githubusercontent.com/DouCharge/rebate/main/utility_rebate_data.json"
+              const countyJsonUrl = "https://raw.githubusercontent.com/DouCharge/rebate/main/county_rebate_data.json"
+              const cityJsonUrl = "https://raw.githubusercontent.com/DouCharge/rebate/main/city_rebate_data.json"
+              const aqmdJsonUrl = "https://raw.githubusercontent.com/DouCharge/rebate/main/aqmd_rebate_data.json"
+              const federalJsonUrl = "https://raw.githubusercontent.com/DouCharge/rebate/main/federal_rebate_data.json"
+
+              Promise.all([
+                fetch(utilityJsonUrl).then(response => response.json()),
+                fetch(countyJsonUrl).then(response => response.json()),
+                fetch(cityJsonUrl).then(response => response.json()),
+                fetch(aqmdJsonUrl).then(response => response.json()),
+                fetch(federalJsonUrl).then(response => response.json()),
+              ])
+                .then(([utilityData, countyData, cityData, aqmdData, federalData]) => {
+                  const results = []
+                  const utilityInput = utility
+                  const countyInput = county
+                  const cityInput = city
+                  const chargerTypeInput = charger
+                  // Function to filter data based on the same logic
+                  function filterData(item) {
+                    if (chargerTypeInput === "Commercial" && item.Commercial_summary !== "N/A") {
+                      let result = {}
+                      for (const key in item) {
+                        if (!key.startsWith("Residential") && key !== "Relevant_to_charger_rebate" && item[key] !== "N/A") {
+                          result[key] = item[key]
+                        }
+                      }
+                      return result
+                    } else if (chargerTypeInput === "Residential" && item.Residential_summary !== "N/A") {
+                      let result = {}
+                      for (const key in item) {
+                        if (!key.startsWith("Commercial") && key !== "Relevant_to_charger_rebate" && item[key] !== "N/A") {
+                          result[key] = item[key]
+                        }
+                      }
+                      return result
+                    }
+                    return null
+                  }
+
+                  // Filter and add results from utility JSON
+                  utilityData.forEach(item => {
+                    if (item.Provider === utilityInput) {
+                      const filteredResult = filterData(item)
+                      if (filteredResult) results.push(filteredResult)
+                    }
+                  })
+
+                  // Filter and add results from county JSON
+                  countyData.forEach(item => {
+                    if (item.Provider === countyInput) {
+                      const filteredResult = filterData(item)
+                      if (filteredResult) results.push(filteredResult)
+                    }
+                  })
+
+                  // Filter and add results from city JSON
+                  cityData.forEach(item => {
+                    if (item.Provider === cityInput) {
+                      const filteredResult = filterData(item)
+                      if (filteredResult) results.push(filteredResult)
+                    }
+                  })
+
+                  // Filter and add results from AQMD JSON
+                  // Modified from findAQMD file.
+                  let aqmd = "Unknown AQMD" // Default value
+                  // Map counties to AQMDs using if-else statements
+                  if (countyInput === "Amador") {
+                    aqmd = "Amador County APCD"
+                  } else if (countyInput === "Los Angeles (Antelope Valley region)") {
+                    aqmd = "Antelope Valley AQMD"
+                  } else if (
+                    ["Alameda", "Contra Costa", "Marin", "Napa", "San Francisco", "San Mateo", "Santa Clara", "Solano (western portion)", "Sonoma (southern portion)"].includes(
+                      countyInput
+                    )
+                  ) {
+                    aqmd = "Bay Area AQMD"
+                  } else if (countyInput === "Butte") {
+                    aqmd = "Butte County AQMD"
+                  } else if (countyInput === "Calaveras") {
+                    aqmd = "Calaveras County APCD"
+                  } else if (countyInput === "Colusa") {
+                    aqmd = "Colusa County APCD"
+                  } else if (countyInput === "Kern (eastern portion)") {
+                    aqmd = "Eastern Kern APCD"
+                  } else if (countyInput === "El Dorado") {
+                    aqmd = "El Dorado County AQMD"
+                  } else if (["Sutter", "Yuba"].includes(countyInput)) {
+                    aqmd = "Feather River AQMD"
+                  } else if (countyInput === "Glenn") {
+                    aqmd = "Glenn County APCD"
+                  } else if (["Alpine", "Inyo", "Mono"].includes(countyInput)) {
+                    aqmd = "Great Basin Unified APCD"
+                  } else if (countyInput === "Imperial") {
+                    aqmd = "Imperial County APCD"
+                  } else if (countyInput === "Lake") {
+                    aqmd = "Lake County AQMD"
+                  } else if (countyInput === "Lassen") {
+                    aqmd = "Lassen County APCD"
+                  } else if (countyInput === "Mariposa") {
+                    aqmd = "Mariposa County APCD"
+                  } else if (countyInput === "Mendocino") {
+                    aqmd = "Mendocino County AQMD"
+                  } else if (countyInput === "Modoc") {
+                    aqmd = "Modoc County APCD"
+                  } else if (["San Bernardino (northern portion)", "Riverside (eastern portion)"].includes(countyInput)) {
+                    aqmd = "Mojave Desert AQMD"
+                  } else if (["Monterey", "San Benito", "Santa Cruz"].includes(countyInput)) {
+                    aqmd = "Monterey Bay Air Resources District"
+                  } else if (["Del Norte", "Humboldt", "Trinity"].includes(countyInput)) {
+                    aqmd = "North Coast Unified AQMD"
+                  } else if (["Nevada", "Plumas", "Sierra"].includes(countyInput)) {
+                    aqmd = "Northern Sierra AQMD"
+                  } else if (countyInput === "Sonoma (northern portion)") {
+                    aqmd = "Northern Sonoma County APCD"
+                  } else if (countyInput === "Placer") {
+                    aqmd = "Placer County APCD"
+                  } else if (countyInput === "Sacramento") {
+                    aqmd = "Sacramento Metropolitan AQMD"
+                  } else if (countyInput === "San Diego") {
+                    aqmd = "San Diego County APCD"
+                  } else if (["Fresno", "Kings", "Madera", "Merced", "San Joaquin", "Stanislaus", "Tulare", "Kern (portions)"].includes(countyInput)) {
+                    aqmd = "San Joaquin Valley APCD"
+                  } else if (countyInput === "San Luis Obispo") {
+                    aqmd = "San Luis Obispo County APCD"
+                  } else if (countyInput === "Santa Barbara") {
+                    aqmd = "Santa Barbara County APCD"
+                  } else if (countyInput === "Shasta") {
+                    aqmd = "Shasta County AQMD"
+                  } else if (countyInput === "Siskiyou") {
+                    aqmd = "Siskiyou County APCD"
+                  } else if (["Los Angeles", "Orange", "San Bernardino (western portion)", "Riverside (western portion)"].includes(countyInput)) {
+                    aqmd = "South Coast AQMD"
+                  } else if (countyInput === "Tehama") {
+                    aqmd = "Tehama County APCD"
+                  } else if (countyInput === "Tuolumne") {
+                    aqmd = "Tuolumne County APCD"
+                  } else if (countyInput === "Ventura") {
+                    aqmd = "Ventura County APCD"
+                  } else if (["Yolo", "Solano (eastern portion)"].includes(countyInput)) {
+                    aqmd = "Yolo-Solano AQMD"
+                  }
+                  aqmdData.forEach(item => {
+                    if (item.Provider === aqmd) {
+                      const filteredResult = filterData(item)
+                      if (filteredResult) results.push(filteredResult)
+                    }
+                  })
+
+                  // Add results from federal JSON
+                  federalData.forEach(item => {
+                    const filteredResult = filterData(item)
+                    if (filteredResult) results.push(filteredResult)
+                  })
+
+                  // Display results
+                  let html = ``
+                  console.log("there------------------------------")
+                  if (results.length === 0) {
+                    //   outputDiv.innerHTML = "<p>No matching rebates found.</p>"
+                    alert("No matching rebates found.")
+                    return
+                  }
+                  // outputDiv.innerHTML = "<h1>Congrats! You may be eligible for the following rebates. Contact us to learn more.</h1>"
+                  html += "<h1>Congrats! You may be eligible for the following rebates. Contact us to learn more.</h1>"
+
+                  results.forEach(result => {
+                    html += `
+      <div style="border: 2px solid green; padding: 20px; margin-bottom: 20px; width: 100%; box-sizing: border-box;">
+    `
+
+                    for (const key in result) {
+                      html += `<p>${key.replace(/_/g, " ")}: ${result[key]}</p>`
+                    }
+
+                    html += `</div>`
+                  })
+
+                  const templateParams = {
+                    to_name: email,
+                    from_name: "yqj741452@gmail.com",
+                    html: html,
+                  }
+                  emailjs.send("service_4598pds", "template_15dzfh4", templateParams).then(
+                    function (response) {
+                      // Redirect to rebate-result page with selected parameters
+                      const url = `/rebate-result?county=${encodeURIComponent(county)}&city=${encodeURIComponent(city)}&utility=${encodeURIComponent(
+                        utility
+                      )}&charger=${encodeURIComponent(charger)}`
+                      window.location.href = url
+                    },
+                    function (error) {
+                      alert("Email sending failed: " + error)
+                    }
+                  )
+                })
+                .catch(error => console.error("Error fetching JSON:", error))
+            },
+            function (error) {
+              alert("Email sending failed: " + error)
+            }
+          )
+        }
+      })
+      document.addEventListener("DOMContentLoaded", function () {
+        // URL of the JSON file hosted externally
+        const jsonUrl = "https://raw.githubusercontent.com/DouCharge/rebate/main/utility_rebate_data.json"
+
+        // Function to populate the "Utility Provider" select field
+        function populateProviders() {
+          fetch(jsonUrl)
+            .then(response => response.json())
+            .then(data => {
+              const utilityProviderSelect = document.getElementById("utility")
+              const providers = new Set() // Use Set to avoid duplicate providers
+
+              // Loop through the JSON data to extract unique providers
+              data.forEach(item => {
+                if (item.Provider) {
+                  providers.add(item.Provider)
+                }
+              })
+
+              // Add each unique provider as an option in the select field
+              providers.forEach(provider => {
+                const option = document.createElement("option")
+                option.value = provider
+                option.textContent = provider
+                utilityProviderSelect.appendChild(option)
+              })
+
+              // Add the "Other" option at the end of the list
+              const otherOption = document.createElement("option")
+              otherOption.value = "Other"
+              otherOption.textContent = "Other"
+              utilityProviderSelect.appendChild(otherOption)
+            })
+            .catch(error => console.error("Error fetching JSON:", error))
+        }
+
+        // Call the function to populate the providers when the page is loaded
+        populateProviders()
+      })
+    </script>
+  </body>
+</html>

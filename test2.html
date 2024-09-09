@@ -1,0 +1,223 @@
+<script>
+  console.error("enter result page")
+
+  // URLs of the JSON files hosted externally
+  const utilityJsonUrl = "http://127.0.0.1:5500/utility_rebate_data.json"
+  const countyJsonUrl = "http://127.0.0.1:5500/county_rebate_data.json"
+  const cityJsonUrl = "http://127.0.0.1:5500/city_rebate_data.json"
+  const aqmdJsonUrl = "http://127.0.0.1:5500/aqmd_rebate_data.json"
+  const federalJsonUrl = "http://127.0.0.1:5500/federal_rebate_data.json"
+
+  // Function to get query parameters from the URL (e.g., the user input from the form)
+  function getQueryParams(param) {
+    const urlParams = new URLSearchParams(window.location.search)
+    return urlParams.get(param)
+  }
+
+  // Get form data from URL parameters
+  const utilityInput = getQueryParams("utility")
+  const countyInput = getQueryParams("county")
+  const cityInput = getQueryParams("city")
+  const chargerTypeInput = getQueryParams("charger")
+
+  console.log("Utility:", utilityInput)
+  console.log("County:", countyInput)
+  console.log("City:", cityInput)
+  console.log("Charger Type:", chargerTypeInput)
+
+  // Fetch all JSON files and process data
+  if ((utilityInput || countyInput || cityInput) && chargerTypeInput) {
+    Promise.all([
+      fetch(utilityJsonUrl).then(response => response.json()),
+      fetch(countyJsonUrl).then(response => response.json()),
+      fetch(cityJsonUrl).then(response => response.json()),
+      fetch(aqmdJsonUrl).then(response => response.json()),
+      fetch(federalJsonUrl).then(response => response.json()),
+    ])
+      .then(([utilityData, countyData, cityData, aqmdData, federalData]) => {
+        const results = []
+
+        // Function to filter data based on the same logic
+        function filterData(item) {
+          if (chargerTypeInput === "Commercial" && item.Commercial_summary !== "N/A") {
+            let result = {}
+            for (const key in item) {
+              if (!key.startsWith("Residential") && key !== "Relevant_to_charger_rebate" && item[key] !== "N/A") {
+                result[key] = item[key]
+              }
+            }
+            return result
+          } else if (chargerTypeInput === "Residential" && item.Residential_summary !== "N/A") {
+            let result = {}
+            for (const key in item) {
+              if (!key.startsWith("Commercial") && key !== "Relevant_to_charger_rebate" && item[key] !== "N/A") {
+                result[key] = item[key]
+              }
+            }
+            return result
+          }
+          return null
+        }
+
+        // Filter and add results from utility JSON
+        utilityData.forEach(item => {
+          if (item.Provider === utilityInput) {
+            const filteredResult = filterData(item)
+            if (filteredResult) results.push(filteredResult)
+          }
+        })
+
+        // Filter and add results from county JSON
+        countyData.forEach(item => {
+          if (item.Provider === countyInput) {
+            const filteredResult = filterData(item)
+            if (filteredResult) results.push(filteredResult)
+          }
+        })
+
+        // Filter and add results from city JSON
+        cityData.forEach(item => {
+          if (item.Provider === cityInput) {
+            const filteredResult = filterData(item)
+            if (filteredResult) results.push(filteredResult)
+          }
+        })
+
+        // Filter and add results from AQMD JSON
+        // Modified from findAQMD file.
+        let aqmd = "Unknown AQMD" // Default value
+        // Map counties to AQMDs using if-else statements
+        if (countyInput === "Amador") {
+          aqmd = "Amador County APCD"
+        } else if (countyInput === "Los Angeles (Antelope Valley region)") {
+          aqmd = "Antelope Valley AQMD"
+        } else if (
+          ["Alameda", "Contra Costa", "Marin", "Napa", "San Francisco", "San Mateo", "Santa Clara", "Solano (western portion)", "Sonoma (southern portion)"].includes(countyInput)
+        ) {
+          aqmd = "Bay Area AQMD"
+        } else if (countyInput === "Butte") {
+          aqmd = "Butte County AQMD"
+        } else if (countyInput === "Calaveras") {
+          aqmd = "Calaveras County APCD"
+        } else if (countyInput === "Colusa") {
+          aqmd = "Colusa County APCD"
+        } else if (countyInput === "Kern (eastern portion)") {
+          aqmd = "Eastern Kern APCD"
+        } else if (countyInput === "El Dorado") {
+          aqmd = "El Dorado County AQMD"
+        } else if (["Sutter", "Yuba"].includes(countyInput)) {
+          aqmd = "Feather River AQMD"
+        } else if (countyInput === "Glenn") {
+          aqmd = "Glenn County APCD"
+        } else if (["Alpine", "Inyo", "Mono"].includes(countyInput)) {
+          aqmd = "Great Basin Unified APCD"
+        } else if (countyInput === "Imperial") {
+          aqmd = "Imperial County APCD"
+        } else if (countyInput === "Lake") {
+          aqmd = "Lake County AQMD"
+        } else if (countyInput === "Lassen") {
+          aqmd = "Lassen County APCD"
+        } else if (countyInput === "Mariposa") {
+          aqmd = "Mariposa County APCD"
+        } else if (countyInput === "Mendocino") {
+          aqmd = "Mendocino County AQMD"
+        } else if (countyInput === "Modoc") {
+          aqmd = "Modoc County APCD"
+        } else if (["San Bernardino (northern portion)", "Riverside (eastern portion)"].includes(countyInput)) {
+          aqmd = "Mojave Desert AQMD"
+        } else if (["Monterey", "San Benito", "Santa Cruz"].includes(countyInput)) {
+          aqmd = "Monterey Bay Air Resources District"
+        } else if (["Del Norte", "Humboldt", "Trinity"].includes(countyInput)) {
+          aqmd = "North Coast Unified AQMD"
+        } else if (["Nevada", "Plumas", "Sierra"].includes(countyInput)) {
+          aqmd = "Northern Sierra AQMD"
+        } else if (countyInput === "Sonoma (northern portion)") {
+          aqmd = "Northern Sonoma County APCD"
+        } else if (countyInput === "Placer") {
+          aqmd = "Placer County APCD"
+        } else if (countyInput === "Sacramento") {
+          aqmd = "Sacramento Metropolitan AQMD"
+        } else if (countyInput === "San Diego") {
+          aqmd = "San Diego County APCD"
+        } else if (["Fresno", "Kings", "Madera", "Merced", "San Joaquin", "Stanislaus", "Tulare", "Kern (portions)"].includes(countyInput)) {
+          aqmd = "San Joaquin Valley APCD"
+        } else if (countyInput === "San Luis Obispo") {
+          aqmd = "San Luis Obispo County APCD"
+        } else if (countyInput === "Santa Barbara") {
+          aqmd = "Santa Barbara County APCD"
+        } else if (countyInput === "Shasta") {
+          aqmd = "Shasta County AQMD"
+        } else if (countyInput === "Siskiyou") {
+          aqmd = "Siskiyou County APCD"
+        } else if (["Los Angeles", "Orange", "San Bernardino (western portion)", "Riverside (western portion)"].includes(countyInput)) {
+          aqmd = "South Coast AQMD"
+        } else if (countyInput === "Tehama") {
+          aqmd = "Tehama County APCD"
+        } else if (countyInput === "Tuolumne") {
+          aqmd = "Tuolumne County APCD"
+        } else if (countyInput === "Ventura") {
+          aqmd = "Ventura County APCD"
+        } else if (["Yolo", "Solano (eastern portion)"].includes(countyInput)) {
+          aqmd = "Yolo-Solano AQMD"
+        }
+        aqmdData.forEach(item => {
+          if (item.Provider === aqmd) {
+            const filteredResult = filterData(item)
+            if (filteredResult) results.push(filteredResult)
+          }
+        })
+
+        // Add results from federal JSON
+        federalData.forEach(item => {
+          const filteredResult = filterData(item)
+          if (filteredResult) results.push(filteredResult)
+        })
+
+        // Display results
+        displayResults(results)
+      })
+      .catch(error => console.error("Error fetching JSON:", error))
+  } else {
+    console.error("fields missing")
+  }
+
+  // Function to display results inside a green-bordered box, full width
+  function displayResults(results) {
+    const outputDiv = document.getElementById("output")
+    if (results.length === 0) {
+      outputDiv.innerHTML = "<p>No matching rebates found.</p>"
+      return
+    }
+    outputDiv.innerHTML = "<h1>Congrats! You may be eligible for the following rebates. Contact us to learn more.</h1>"
+
+    results.forEach(result => {
+      const resultDiv = document.createElement("div")
+      resultDiv.style.border = "2px solid green" // Add a green border around the result block
+      resultDiv.style.padding = "20px"
+      resultDiv.style.marginBottom = "20px"
+      resultDiv.style.width = "100%" // Ensure the result block takes full width
+      resultDiv.style.boxSizing = "border-box" // Include padding and border in width calculation
+
+      for (const key in result) {
+        const p = document.createElement("p")
+        p.textContent = `${key.replace(/_/g, " ")}: ${result[key]}`
+        resultDiv.appendChild(p)
+      }
+
+      outputDiv.appendChild(resultDiv)
+    })
+  }
+</script>
+
+<style>
+  /* Ensure the output container takes up full width */
+  #output {
+    width: 100%;
+    max-width: 100%;
+    padding: 20px;
+    margin: 0 auto;
+    box-sizing: border-box;
+  }
+</style>
+
+<div id="output"></div>
